@@ -1,27 +1,43 @@
 name: Uptime
 
 on:
-  workflow_dispatch:
+  pull_request:
   schedule:
     - cron: '*/10 * * * *'
 
-
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v3
+
+      - name: 🔧 Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: 🛠️ Build Go
+        run: go build -v cmd/sitatus/main.go
+
+      - name: 📤 Upload binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: binary
+          path: ./main
+
   run-uptime:
+    needs: build
     runs-on: ubuntu-latest
     steps:
+      # - name: ⤵️ Check out code from GitHub
+      #   uses: actions/checkout@v3
+
       - name: 📥 Download binary
         uses: actions/download-artifact@v2
         with:
           name: binary
-
-      # - name: Check binary exists
-      #   uses: benc-uk/workflow-dispatch@v1
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     workflow: build.yml
-      #     repo: ${{ github.repository }}
-
 
       - name: 🏃 Run uptime
         run: chmod +x main && ./main
