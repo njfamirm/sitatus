@@ -37,8 +37,6 @@ jobs:
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
 
       - name: 📥 Download binary
         uses: actions/download-artifact@v2
@@ -55,7 +53,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file_pattern: analytic/*.jsonl
-          branch: ${{ github.head_ref }}
           commit_message: 'chore: update analytics'
           commit_user_name: actions-user
           commit_user_email: actions@github.com
