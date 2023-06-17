@@ -4,7 +4,7 @@ on:
   pull_request:
   workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   build:
@@ -49,7 +49,7 @@ jobs:
         run: chmod +x main && ./main
 
       - name: 💎 Commit & Push analytics
-        if: github.head_ref == 'main'
+        if: github.head_ref == 'next'
         uses: stefanzweifel/git-auto-commit-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
