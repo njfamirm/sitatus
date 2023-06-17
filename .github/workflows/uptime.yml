@@ -1,4 +1,4 @@
-name: Uptime
+name: Build and Run
 
 on:
   pull_request:
@@ -31,8 +31,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      # - name: ⤵️ Check out code from GitHub
-      #   uses: actions/checkout@v3
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v3
 
       - name: 📥 Download binary
         uses: actions/download-artifact@v2
