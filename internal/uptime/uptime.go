@@ -16,12 +16,14 @@ func Uptime() {
 			fmt.Println(fmt.Errorf("(uptime): visit %s failed", site.Name))
 			ping = 0
 		} else {
-			fmt.Printf("(uptime): visit %s with %d ping\n", site.Name, ping)
+			fmt.Printf("(uptime): visit %s with %dms ping\n", site.Name, ping)
 		}
 
+		// write analytic
 		writeAnalyticErr := analytic.WriteAnalytic(site.Name, ping)
 		if writeAnalyticErr != nil {
 			fmt.Println(fmt.Errorf("(uptime): write analytic %s failed", site.Name))
+			panic(writeAnalyticErr)
 		}
 	}
 }
