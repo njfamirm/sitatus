@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/njfamirm/sitatus/internal/analytic"
-	"github.com/njfamirm/sitatus/pkg/config"
+	"github.com/njfamirm/sitatus/internal/config"
 	"github.com/njfamirm/sitatus/pkg/uptime"
 )
 
