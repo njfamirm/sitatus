@@ -3,6 +3,7 @@ package uptime
 import (
 	"fmt"
 
+	"github.com/njfamirm/sitatus/internal/analytic"
 	"github.com/njfamirm/sitatus/pkg/config"
 	"github.com/njfamirm/sitatus/pkg/uptime"
 )
@@ -13,8 +14,14 @@ func Uptime() {
 
 		if err != nil {
 			fmt.Println(fmt.Errorf("(uptime): visit %s failed", site.Name))
+			ping = 0
 		} else {
 			fmt.Printf("(uptime): visit %s with %d ping\n", site.Name, ping)
+		}
+
+		writeAnalyticErr := analytic.WriteAnalytic(site.Name, ping)
+		if writeAnalyticErr != nil {
+			fmt.Println(fmt.Errorf("(uptime): write analytic %s failed", site.Name))
 		}
 	}
 }
