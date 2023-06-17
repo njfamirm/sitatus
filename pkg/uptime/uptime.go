@@ -15,7 +15,7 @@ func Uptime(url string) (int, error) {
 	}
 	defer response.Body.Close()
 	if response.StatusCode != http.StatusOK {
-		return 0, fmt.Errorf("bad status: %s", response.Status)
+		return 0, fmt.Errorf("Request to %s failed: %s", url, response.Status)
 	}
 	return int(time.Since(start).Milliseconds()), nil
 }
