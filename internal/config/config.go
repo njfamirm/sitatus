@@ -3,9 +3,14 @@ package config
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
+	"strings"
 
 	"gopkg.in/yaml.v2"
 )
+
+var TelegramBotToken = os.Getenv("TELEGRAM_BOT_TOKEN")
+var TelegramBotChatIdList = strings.Split(os.Getenv("TELEGRAM_BOT_CHAT_ID_LIST"), ",")
 
 type site struct {
 	Name string `yaml:"name"`
