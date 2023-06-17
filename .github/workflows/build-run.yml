@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '*/5 * * * *'
 
   pull_request:
 
@@ -28,6 +28,14 @@ jobs:
         with:
           name: binary
           path: ./main
+
+      - name: ⤵️ Cache Go dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
   run-uptime:
     needs: build
