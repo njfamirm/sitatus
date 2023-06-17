@@ -1,0 +1,7 @@
+site-list:
+  - name: soffit-ws
+    url: https://soffit.co/server-info
+  - name: soffit-order
+    url: https://order.soffit.co/server-info
+  - name: baransys-demo
+    url: https://demo.baransys.com/server-info
