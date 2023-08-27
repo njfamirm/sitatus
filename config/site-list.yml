@@ -3,9 +3,5 @@ site-list:
     url: https://soffit.co/server-info
   - name: soffit-order
     url: https://order.soffit.co/server-info
-  - name: ympedia
-    url: https://intro.yamanipedia.com
-  - name: mdpedia-fa
-    url: https://mahdi-pedia.com
   - name: baran
     url: https://baransys.com/
