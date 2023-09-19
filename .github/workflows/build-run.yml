@@ -62,7 +62,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file_pattern: analytic/*.jsonl
+          file_pattern: analytic/**/*.jsonl
           commit_message: 'chore: update analytics'
           commit_user_name: njfamirm-bot
           commit_user_email: bot@njfamirm.ir
